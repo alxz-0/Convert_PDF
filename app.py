@@ -20,8 +20,6 @@ from PySide6.QtWidgets import (
 from convert import (pdf_to_txt, pdf_to_xlsx, pdf_to_docx, pdf_to_jpg, pdf_to_png)
 from donation import open_donation_page
 
-# ======= PROGRAM'S RUNING BUDDY! ======= #
-
 OUTPUT_FOLDER = r"D:\Experiment\Result-Converted-Files"
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
