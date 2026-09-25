@@ -37,7 +37,7 @@ class PDFConverter(QWidget):
         title = QLabel("📄 PDF to All Converter")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title.setStyleSheet("font-size:20px;font-weight:bold;")
-        self.setStyleSheet("background-color: #000000;")
+        self.setStyleSheet("background-color: grey;")
         self.file_label = QLabel("No File Selected")
         self.file_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
