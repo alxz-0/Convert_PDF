@@ -1,5 +1,5 @@
 import os
-import subprocess   
+import subprocess
 import sys
 import pymupdf
 import pandas as pd
@@ -42,6 +42,10 @@ class PDFConverter(QWidget):
         self.file_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.btn_choose = QPushButton("Choose PDF File")
+        self.btn_choose.setStyleSheet("""
+        QPushButton { color: white; border-radius: 8px; padding: 8px; } 
+        QPushButton:hover { background-color: white; color: black; }
+        """)
         self.btn_choose.clicked.connect(self.choose_file)
 
         self.CB_docx = QRadioButton("DOCX")
@@ -49,6 +53,16 @@ class PDFConverter(QWidget):
         self.CB_txt = QRadioButton("TXT")
         self.CB_png = QRadioButton("PNG")
         self.CB_jpg = QRadioButton("JPG")
+
+        checkedHover = "QRadioButton::indicator:checked:hover { background-color: #EAE2D6}"
+
+        checked = "QRadioButton::indicator:checked { background-color: #EAE2D6; border-radius: 10px }"
+
+        self.CB_docx.setStyleSheet(checked)
+        self.CB_xlsx.setStyleSheet(checked)
+        self.CB_txt.setStyleSheet(checked)
+        self.CB_png.setStyleSheet(checked)
+        self.CB_jpg.setStyleSheet(checked)
 
         format_layout = QHBoxLayout()
 
@@ -62,6 +76,10 @@ class PDFConverter(QWidget):
 
         self.btn_convert = QPushButton("Convert")
         self.btn_convert.clicked.connect(self.convert_file)
+        self.btn_convert.setStyleSheet("""
+        QPushButton { color: white; border-radius: 8px; padding: 8px; font-weight: bold } 
+        QPushButton:hover { background-color: white; color: black; }
+        """)
         self.btn_donate = QPushButton("For Eat & Coffee Developer <3")
         self.btn_donate.setStyleSheet("""
             QPushButton { background-color: #757D6F; color: black; border-radius: 8px; padding: 8px; font-weight: bold; }
