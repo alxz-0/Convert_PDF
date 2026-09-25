@@ -13,14 +13,14 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QVBoxLayout,
     QHBoxLayout,
-    QMessageBox,    
+    QMessageBox,
     QProgressBar,
     QRadioButton,
 )
 from convert import (pdf_to_txt, pdf_to_xlsx, pdf_to_docx, pdf_to_jpg, pdf_to_png)
 from donation import open_donation_page
 
-OUTPUT_FOLDER = r"D:\Experiment\Result-Converted-Files"
+OUTPUT_FOLDER = r"D:\Documents\Converted Files"
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 class PDFConverter(QWidget):
@@ -37,14 +37,14 @@ class PDFConverter(QWidget):
         title = QLabel("📄 PDF to All Converter")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title.setStyleSheet("font-size:20px;font-weight:bold;")
-        self.setStyleSheet("background-color: grey;")
+        self.setStyleSheet("background-color: #e9ecef; color: black; font-family: Arial, sans-serif;")
         self.file_label = QLabel("No File Selected")
         self.file_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.btn_choose = QPushButton("Choose PDF File")
         self.btn_choose.setStyleSheet("""
-        QPushButton { color: white; border-radius: 8px; padding: 8px; } 
-        QPushButton:hover { background-color: white; color: black; }
+        QPushButton { border-radius: 8px; padding: 8px; font-weight: bold } 
+        QPushButton:hover { background-color: black; color: white; }
         """)
         self.btn_choose.clicked.connect(self.choose_file)
 
@@ -54,15 +54,14 @@ class PDFConverter(QWidget):
         self.CB_png = QRadioButton("PNG")
         self.CB_jpg = QRadioButton("JPG")
 
-        checkedHover = "QRadioButton::indicator:checked:hover { background-color: #EAE2D6}"
+        border = "QRadioButton::indicator { border: 2px solid black; border-radius: 10px; width: 20px; height: 20px }"
+        checked = "QRadioButton::indicator:checked { background-color: black; border-radius: 10px }"
 
-        checked = "QRadioButton::indicator:checked { background-color: #EAE2D6; border-radius: 10px }"
-
-        self.CB_docx.setStyleSheet(checked)
-        self.CB_xlsx.setStyleSheet(checked)
-        self.CB_txt.setStyleSheet(checked)
-        self.CB_png.setStyleSheet(checked)
-        self.CB_jpg.setStyleSheet(checked)
+        self.CB_docx.setStyleSheet(border + checked)
+        self.CB_xlsx.setStyleSheet(border + checked)
+        self.CB_txt.setStyleSheet(border + checked)
+        self.CB_png.setStyleSheet(border + checked)
+        self.CB_jpg.setStyleSheet(border + checked)
 
         format_layout = QHBoxLayout()
 
@@ -77,8 +76,8 @@ class PDFConverter(QWidget):
         self.btn_convert = QPushButton("Convert")
         self.btn_convert.clicked.connect(self.convert_file)
         self.btn_convert.setStyleSheet("""
-        QPushButton { color: white; border-radius: 8px; padding: 8px; font-weight: bold } 
-        QPushButton:hover { background-color: white; color: black; }
+        QPushButton { border-radius: 8px; padding: 8px; font-weight: bold } 
+        QPushButton:hover { background-color: black; color: white; }
         """)
         self.btn_donate = QPushButton("For Eat & Coffee Developer <3")
         self.btn_donate.setStyleSheet("""
@@ -87,7 +86,6 @@ class PDFConverter(QWidget):
             """)
         self.btn_donate.clicked.connect(open_donation_page)
         
-
         main_layout.addWidget(self.btn_donate)
         main_layout.addWidget(title)
         main_layout.addWidget(self.file_label)
