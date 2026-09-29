@@ -28,22 +28,29 @@ class PDFConverter(QWidget):
     def __init__(self):
         super().__init__()
         self.pdf_file = ""
-        self.setWindowTitle("PDF to All Converter")
+        self.setWindowTitle("PDF Converter")
         self.resize(700, 400)
         self.initUI()
+        self.setAcceptDrops(True)
 
     def initUI(self):
         main_layout = QVBoxLayout()
         title = QLabel("📄 PDF to All Converter")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title.setStyleSheet("font-size:20px;font-weight:bold;")
-        self.setStyleSheet("background-color: #e9ecef; color: black; font-family: Arial, sans-serif;")
-        self.file_label = QLabel("No File Selected")
+        self.setStyleSheet("background-color: #e9ecef; color: black; font-family: Arial, sans-serif; height: 20px;")
+
+        self.file_label = QLabel("Drag and drop a PDF file here")
         self.file_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.file_label.setStyleSheet("font-size:16px; border: 2px dashed #757D6F; padding: 20px; border-radius: 10px;")
+
+        file_label_layout = QVBoxLayout()
+        file_label_layout.addWidget(self.file_label)
+        self.file_label.setLayout(file_label_layout)
 
         self.btn_choose = QPushButton("Choose PDF File")
         self.btn_choose.setStyleSheet("""
-        QPushButton { border-radius: 8px; padding: 8px; font-weight: bold } 
+        QPushButton { border: 1px solid; background-color: #757D6F; color: white; border-radius: 8px; padding: 8px; font-weight: bold } 
         QPushButton:hover { background-color: black; color: white; }
         """)
         self.btn_choose.clicked.connect(self.choose_file)
@@ -54,14 +61,17 @@ class PDFConverter(QWidget):
         self.CB_png = QRadioButton("PNG")
         self.CB_jpg = QRadioButton("JPG")
 
-        border = "QRadioButton::indicator { border: 2px solid black; border-radius: 10px; width: 20px; height: 20px }"
-        checked = "QRadioButton::indicator:checked { background-color: black; border-radius: 10px }"
+        border = "QRadioButton::indicator { border: 2px solid black; border-radius: 10px; width: 10px; height: 10px }"
+        fullButtonBorder = """QRadioButton { border: 1px solid black; border-radius: 10px; padding: 5px; }
+        QRadioButton:hover { background-color: #EAE2D6; }"""
+        checked = """QRadioButton::indicator:checked { background-color: #757D6F; border-radius: 10px }
+        QRadioButton::indicator:checked:hover { background-color: gray; border-radius: 10px }"""
 
-        self.CB_docx.setStyleSheet(border + checked)
-        self.CB_xlsx.setStyleSheet(border + checked)
-        self.CB_txt.setStyleSheet(border + checked)
-        self.CB_png.setStyleSheet(border + checked)
-        self.CB_jpg.setStyleSheet(border + checked)
+        self.CB_docx.setStyleSheet(border + fullButtonBorder + checked)
+        self.CB_xlsx.setStyleSheet(border + fullButtonBorder + checked)
+        self.CB_txt.setStyleSheet(border + fullButtonBorder + checked)
+        self.CB_png.setStyleSheet(border + fullButtonBorder + checked)
+        self.CB_jpg.setStyleSheet(border + fullButtonBorder + checked)
 
         format_layout = QHBoxLayout()
 
@@ -72,27 +82,27 @@ class PDFConverter(QWidget):
         format_layout.addWidget(self.CB_jpg)
 
         self.progress = QProgressBar()
+        self.progress.setMinimum(0)
 
         self.btn_convert = QPushButton("Convert")
         self.btn_convert.clicked.connect(self.convert_file)
         self.btn_convert.setStyleSheet("""
-        QPushButton { border-radius: 8px; padding: 8px; font-weight: bold } 
-        QPushButton:hover { background-color: black; color: white; }
+        QPushButton { background-color: black; color: white; border-radius: 8px; padding: 8px; font-weight: bold } 
+        QPushButton:hover { background-color: olive; color: white; border: 1px solid; }
         """)
         self.btn_donate = QPushButton("For Eat & Coffee Developer <3")
         self.btn_donate.setStyleSheet("""
-            QPushButton { background-color: #757D6F; color: black; border-radius: 8px; padding: 8px; font-weight: bold; }
+            QPushButton { border: 1px solid; color: black; border-radius: 8px; padding: 8px; font-weight: bold; width: 90px; height: 20px; }
             QPushButton:hover { background-color: #EAE2D6; }
             """)
         self.btn_donate.clicked.connect(open_donation_page)
         
-        main_layout.addWidget(self.btn_donate)
         main_layout.addWidget(title)
         main_layout.addWidget(self.file_label)
         main_layout.addWidget(self.btn_choose)
         main_layout.addLayout(format_layout)
-        main_layout.addWidget(self.progress)
         main_layout.addWidget(self.btn_convert)
+        main_layout.addWidget(self.btn_donate)
 
         self.setLayout(main_layout)
 
