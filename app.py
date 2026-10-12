@@ -39,10 +39,12 @@ class PDFConverter(QWidget):
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title.setStyleSheet("font-size:20px;font-weight:bold;")
         self.setStyleSheet("background-color: #e9ecef; color: black; font-family: Arial, sans-serif; height: 20px;")
-
+        
+        """
         self.file_label = QLabel("Drag and drop a PDF file here")
         self.file_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.file_label.setStyleSheet("font-size:16px; border: 2px dashed #757D6F; padding: 20px; border-radius: 10px;")
+        """
 
         file_label_layout = QVBoxLayout()
         file_label_layout.addWidget(self.file_label)
