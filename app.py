@@ -100,7 +100,7 @@ class PDFConverter(QWidget):
         self.btn_donate.clicked.connect(open_donation_page)
         
         main_layout.addWidget(title)
-        main_layout.addWidget(self.file_label)
+        #main_layout.addWidget(self.file_label)
         main_layout.addWidget(self.btn_choose)
         main_layout.addLayout(format_layout)
         main_layout.addWidget(self.btn_convert)
@@ -119,7 +119,7 @@ class PDFConverter(QWidget):
 
         if file_name:
             self.pdf_file = file_name
-            self.file_label.setText(file_name)
+            #self.file_label.setText(file_name)
 
     def convert_file(self):
         """Convert the selected PDF into all selected supported formats."""
@@ -169,7 +169,7 @@ class PDFConverter(QWidget):
 
         if not os.path.exists(folder):
             os.makedirs(folder)
-        subprocess.Popen(f'explorer "{folder}')
+        subprocess.Popen(f'explorer {folder}')
 
 if __name__ == "__main__":
 
