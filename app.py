@@ -28,7 +28,7 @@ class PDFConverter(QWidget):
     def __init__(self):
         super().__init__()
         self.pdf_file = ""
-        self.setWindowTitle("PDF Converter")
+        self.setWindowTitle("Offline PDF Converter")
         self.resize(700, 400)
         self.initUI()
         self.setAcceptDrops(True)
