@@ -39,7 +39,7 @@ def pdf_to_xlsx(pdf_path, output_folder):
 
 # PDF to DOCX
 def pdf_to_docx(pdf_path, output_folder):
-    filename = os.path.splitext(os.path.basename(pdf_path))
+    filename = os.path.splitext(os.path.basename(pdf_path))[0]
     output = os.path.join(output_folder,f"{filename}.docx")
 
     cv = Converter(pdf_path)
@@ -63,7 +63,7 @@ def pdf_to_jpg(pdf_path, output_folder):
 
 # PDF to PNG
 def pdf_to_png(pdf_path, output_folder):
-    filename = os.path.splitext(os.path.basename(pdf_path))
+    filename = os.path.splitext(os.path.basename(pdf_path))[0]
     doc = pymupdf.open(pdf_path)
     
     for page_num in range(len(doc)):
